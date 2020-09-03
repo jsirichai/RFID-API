@@ -19,9 +19,9 @@ app.get("/", (req, res) => {
 
 function checkwrite(value) {
   if (value == 1) {
-    return "A1";
+    return "1A";
   } else {
-    return "A0";
+    return "0A";
   }
 }
 
