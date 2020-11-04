@@ -26,14 +26,14 @@ function checkwrite(value) {
 }
 
 app.post("/write/rfid", (req, res) => {
-  const { tv1, tv2, tv42t, room25 } = req.body;
+  const { tv1, tv2, tv42t, room25,personnumber } = req.body;
   const tv1code = checkwrite(tv1);
   const tv2code = checkwrite(tv2);
   const tv42tcode = checkwrite(tv42t);
   const room25code = checkwrite(room25);
   // A1A1A1A1000000000000000000000000
   const rfid_scan = `${tv1code}${tv2code}${tv42tcode}${room25code}000000000000000000000000`;
-  const result = exec(`VBCallReader.exe "4" "9600" "${rfid_scan}"`);
+  const result = exec(`VBCallReader.exe "4" "9600" "${rfid_scan}" "${personnumber}"`);
   const temp_status = result.toString("UTF-8").split(",");
   const RFID_CONNECT = temp_status[0].trim();
   const RFID_WIRTE = temp_status[1].trim();
